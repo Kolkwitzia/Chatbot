@@ -1,0 +1,101 @@
+﻿let userName = '';
+let currentState = 'main';
+
+function addMessage(message, isBot = true) {
+    const chatBox = document.getElementById('chatBox');
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `message ${isBot ? 'bot-message' : 'user-message'}`;
+    messageDiv.textContent = message;
+    chatBox.appendChild(messageDiv);
+    chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+function startChat() {
+    const nameInput = document.getElementById('userName');
+    userName = nameInput.value.trim();
+    
+    if (!userName) {
+        alert('Please enter your name to start the chat');
+        return;
+    }
+
+    // Hide input area and show main options
+    document.getElementById('userInputArea').style.display = 'none';
+    document.getElementById('mainOptions').style.display = 'block';
+    currentState = 'main';
+
+    // Initial greeting
+    addMessage(`Hello ${userName}! I'm ChatBot. How can I help you today?`);
+    addMessage('Please select one of the options below:');
+}
+
+function selectOption(option) {
+    // Hide main options first
+    document.getElementById('mainOptions').style.display = 'none';
+    
+    switch (option) {
+        case 'help':
+            currentState = 'help';
+            addMessage(`What kind of help do you need, ${userName}?`, true);
+            document.getElementById('helpOptions').style.display = 'block';
+            break;
+
+        case 'info':
+            currentState = 'info';
+            addMessage(`What information are you looking for, ${userName}?`, true);
+            document.getElementById('infoOptions').style.display = 'block';
+            break;
+
+        case 'end':
+            addMessage('I want to end the chat', false);
+            endChat();
+            break;
+    }
+}
+
+function selectSecondaryOption(option) {
+    const responses = {
+        // Help responses
+        'technical': `I'll connect you with our technical support team. What specific technical issue are you experiencing?`,
+        'account': `I can help you with account-related issues. What's happening with your account?`,
+        'general': `I'll be happy to answer your general questions. What would you like to know?`,
+        
+        // Info responses
+        'products': `Here's our product catalog. We offer various solutions including...`,
+        'services': `Our services include consulting, implementation, and support...`,
+        'pricing': `Our pricing plans start from $X per month. Would you like a detailed breakdown?`
+    };
+
+    addMessage(`I'm interested in ${option}`, false);
+    addMessage(responses[option], true);
+}
+
+function backToMain() {
+    // Hide all secondary option areas
+    document.getElementById('helpOptions').style.display = 'none';
+    document.getElementById('infoOptions').style.display = 'none';
+    
+    // Show main options
+    document.getElementById('mainOptions').style.display = 'block';
+    currentState = 'main';
+    
+    addMessage('What else can I help you with?', true);
+}
+
+function endChat() {
+    // Hide all option areas
+    document.getElementById('mainOptions').style.display = 'none';
+    document.getElementById('helpOptions').style.display = 'none';
+    document.getElementById('infoOptions').style.display = 'none';
+    
+    addMessage(`Thank you for chatting with me, ${userName}! Have a great day!`, true);
+    
+    // Reset button after 2 seconds
+    setTimeout(() => {
+        document.getElementById('userInputArea').style.display = 'block';
+        document.getElementById('userName').value = '';
+        document.getElementById('chatBox').innerHTML = '';
+        userName = '';
+        currentState = 'main';
+    }, 2000);
+}
