@@ -52,13 +52,13 @@ function selectOption(option) {
             document.getElementById('infoOptions').style.display = 'block';
             break;
 
-        case 'retirement'
+        case 'retirement' :
             currentState = 'retirement'
             addMessage(`What information are you looking for, ${userName}?`, true);
             document.getElementById('infoOptions').style.display = 'block';
             break;
 
-        case 'insurance'
+        case 'insurance' :
             currentState = 'insurance'
             addMessage(`What information are you looking for, ${userName}?`, true);
             document.getElementById('infoOptions').style.display = 'block';
