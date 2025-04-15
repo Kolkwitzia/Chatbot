@@ -34,22 +34,33 @@ function selectOption(option) {
     document.getElementById('mainOptions').style.display = 'none';
     
     switch (option) {
-        case 'help':
-            currentState = 'help';
+        case 'investment':
+            currentState = 'investment';
             addMessage(`What kind of help do you need, ${userName}?`, true);
             document.getElementById('helpOptions').style.display = 'block';
             break;
 
-        case 'info':
-            currentState = 'info';
+        case 'family':
+            currentState = 'family';
             addMessage(`What information are you looking for, ${userName}?`, true);
             document.getElementById('infoOptions').style.display = 'block';
             break;
 
-        case 'end':
-            addMessage('I want to end the chat', false);
-            endChat();
+        case 'property':
+            currentState = 'property'
+            addMessage(`What information are you looking for, ${userName}?`, true);
+            document.getElementById('infoOptions').style.display = 'block';
             break;
+
+        case 'retirement'
+            currentState = 'retirement'
+            addMessage(`What information are you looking for, ${userName}?`, true);
+            document.getElementById('infoOptions').style.display = 'block';
+
+        case 'insurance'
+            currentState = 'insurance'
+            addMessage(`What information are you looking for, ${userName}?`, true);
+            document.getElementById('infoOptions').style.display = 'block';
     }
 }
 
