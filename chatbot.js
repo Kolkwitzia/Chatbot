@@ -47,19 +47,19 @@ function selectOption(option) {
             break;
 
         case 'property':
-            currentState = 'property'
+            currentState = 'property';
             addMessage(`What information are you looking for, ${userName}?`, true);
             document.getElementById('infoOptions').style.display = 'block';
             break;
 
-        case 'retirement' :
-            currentState = 'retirement'
+        case 'retirement':
+            currentState = 'retirement';
             addMessage(`What information are you looking for, ${userName}?`, true);
             document.getElementById('infoOptions').style.display = 'block';
             break;
 
-        case 'insurance' :
-            currentState = 'insurance'
+        case 'insurance':
+            currentState = 'insurance';
             addMessage(`What information are you looking for, ${userName}?`, true);
             document.getElementById('infoOptions').style.display = 'block';
             break;
