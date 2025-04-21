@@ -11,6 +11,7 @@
     border-radius: 8px;
     padding: 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: white;
 }
 
 .chat-box {
@@ -20,6 +21,7 @@
     padding: 10px;
     margin-bottom: 20px;
     border-radius: 4px;
+    background-color: #3D455E;
 }
 
 .message {
@@ -30,23 +32,16 @@
 }
 
 .bot-message {
-    background-color: #e3f2fd;
+    background-color: #3D455E;
     margin-right: auto;
+    color: white;
 }
 
 .user-message {
-    background-color: #f5f5f5;
+    background-color: #F26522;
     margin-left: auto;
+    color: white;
 }
-
-.name-input {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-}
-
 .options-area button {
     margin: 5px;
     padding: 8px 16px;
@@ -80,17 +75,3 @@
 .options-area.hiding {
     opacity: 0;
 }
-
-#startButton {
-    width: 100%;
-    padding: 10px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-    #startButton:hover {
-        background-color: #45a049;
-    }
