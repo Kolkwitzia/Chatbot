@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
-*{
+* {
     font-family: "Montserrat", sans-serif;
 }
 
@@ -11,6 +11,7 @@
     border-radius: 8px;
     padding: 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #fafafa;
 }
 
 .chat-box {
@@ -23,21 +24,12 @@
     background-color: white;
 }
 
-.welcome {
-    margin: 10px 0;
-    padding: 8px 12px;
-    border-radius: 4px;
-    max-width: 80%;
-    background-color: #3d455e;
-    margin-right: auto;
-    color: white;
-}
-
 .message {
     margin: 10px 0;
     padding: 8px 12px;
     border-radius: 4px;
     max-width: 80%;
+    word-wrap: break-word;
 }
 
 .bot-message {
@@ -52,31 +44,35 @@
     color: white;
 }
 
-.options-area{
-    overflow-y: auto;
-    border: 1px solid #eee;
+.options-area {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
     padding: 10px;
-    margin-bottom: 20px;
-    border-radius: 4px;
     background-color: #f26522;
+    border: 1px solid #eee;
+    border-radius: 4px;
 }
 
 .options-area button {
-    margin: 5px;
-    padding: 8px 16px;
+    flex: 1 1 45%;
+    min-width: 120px;
+    padding: 10px 16px;
     background-color: white;
     border: none;
-    border-radius: 4px;
+    border-radius: 6px;
     cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    font-weight: 600;
 }
 
-    .options-area button:hover {
-        background-color: white;
-    }
+.options-area button:hover {
+    background-color: #ffe0cc;
+    color: #3d455e;
+}
 
 .options-area button.back-button {
     background-color: #757575;
-    margin-top: 10px;
     width: 100%;
 }
 
@@ -84,7 +80,7 @@
     background-color: #616161;
 }
 
-/* Add transition effects for smooth option switching */
+/* Smooth option switching */
 .options-area {
     transition: opacity 0.3s ease-in-out;
     opacity: 1;
