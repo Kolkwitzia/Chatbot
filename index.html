@@ -12,7 +12,7 @@
             <text onload="startChat('main')">Hello, how can I help you today?</text>
             <!-- Messages will appear here -->
         </div>
-        <div class="options-area" id="mainOptions" style="display: none;">
+        <div onload="startChat('mainOptions')" class="options-area" id="mainOptions" style="display: none;">
             <button onclick="selectOption('investment')">Investment</button>
             <button onclick="selectOption('family')">Family</button>
             <button onclick="selectOption('property')">Property</button>
