@@ -12,6 +12,7 @@ function addMessage(message, isBot = true) {
 
 function startChat(){
     document.getElementById('main').style.display = 'block';
+    document.getElementById('mainOptions').style.display = 'block';
 }
 
 function selectOption(option) {
