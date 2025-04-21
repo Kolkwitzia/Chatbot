@@ -1,5 +1,166 @@
-﻿let userName = '';
-let currentState = 'main';
+let userName = '';
+let currentState = 'mainMenu';
+
+const flow = {
+    mainMenu: {
+        prompt: "Hello, is there anything I can help you with?",
+        options: {
+            'Family': 'familyMenu',
+            'Property': 'propertyMenu',
+            'Investment': 'investmentMenu',
+            'Retirement': 'retirementMenu',
+            'Insurance': 'insuranceMenu'
+        }
+    },
+    familyMenu: {
+        prompt: "Our team is here to help with whatever stage of life you're planning for — just let us know what you'd like to explore first.",
+        options: {
+            'Marriage': 'lifeEventMenu',
+            'Children': 'lifeEventMenu',
+            'New Business': 'lifeEventMenu',
+            'Home': 'propertyMenu'
+        }
+    },
+    lifeEventMenu: {
+        prompt: "Great choice — this is a big life moment. Book an appointment with one of our advisers!",
+        options: {
+            'Back to start': 'mainMenu',
+            'Book an appointment': 'Form'
+        }
+    },
+    propertyMenu: {
+        prompt: "Whether you're just getting started or looking to grow, our team is here to support your property goals.",
+        options: {
+            'Investment Property': 'propertyInvestment',
+            'First Home': 'firstHome'
+        }
+    },
+    propertyInvestment: {
+        prompt: "Looking into property investment? Let's lock in a time to talk!",
+        options: {
+            'Back to start': 'mainMenu',
+            'Book an appointment': 'Form'
+        }
+    },
+    firstHome: {
+        prompt: "Exciting times! Buying your first home is a big step!",
+        options: {
+            'Back to start': 'mainMenu',
+            'Book an appointment': 'Form'
+        }
+    },
+    investmentMenu: {
+        prompt: "Ready to make your money work for you?",
+        options: {
+            'Property': 'propertyMenu',
+            'KiwiSaver': 'kiwiSaverMenu'
+        }
+    },
+    kiwiSaverMenu: {
+        prompt: "KiwiSaver isn’t one-size-fits-all. Choose what you'd like to look into.",
+        options: {
+            'Provider': 'kiwiSaverProvider',
+            'Type': 'kiwiSaverType',
+            'Performance': 'kiwiSaverPerformance',
+            'PIR': 'kiwiSaverPIR'
+        }
+    },
+    kiwiSaverProvider: {
+        prompt: "Choosing the right KiwiSaver provider can really pay off.",
+        options: {
+            'Back to start': 'mainMenu',
+            'Book an appointment': 'Form'
+        }
+    },
+    kiwiSaverType: {
+        prompt: "Not sure which KiwiSaver fund type is right for you?",
+        options: {
+            'Back to start': 'mainMenu',
+            'Book an appointment': 'Form'
+        }
+    },
+    kiwiSaverPerformance: {
+        prompt: "Curious about how your KiwiSaver’s performing?",
+        options: {
+            'Back to start': 'mainMenu',
+            'Book an appointment': 'Form'
+        }
+    },
+    kiwiSaverPIR: {
+        prompt: "Choosing the right PIR helps you keep more of your returns.",
+        options: {
+            'Back to start': 'mainMenu',
+            'Book an appointment': 'Form'
+        }
+    },
+    retirementMenu: {
+        prompt: "Retirement looks different for everyone. Pick the area you'd like to focus on.",
+        options: {
+            'Investment': 'investmentMenu',
+            'Plan': 'retirementPlan'
+        }
+    },
+    retirementPlan: {
+        prompt: "It’s never too early or too late to make a retirement plan.",
+        options: {
+            'Back to start': 'mainMenu',
+            'Book an appointment': 'Form'
+        }
+    },
+    insuranceMenu: {
+        prompt: "When it comes to protecting what matters most, our team’s got you covered.",
+        options: {
+            'Trauma': 'traumaInsurance',
+            'Health': 'healthInsurance',
+            'Business': 'businessInsurance',
+            'Life': 'lifeInsurance',
+            'Income Protection': 'incomeProtectionInsurance',
+            'Redundancy': 'redundancyInsurance'
+        }
+    },
+    traumaInsurance: {
+        prompt: "Trauma cover offers serious protection for tough times.",
+        options: {
+            'Back to start': 'mainMenu',
+            'Book an appointment': 'Form'
+        }
+    },
+    healthInsurance: {
+        prompt: "Want to explore your health insurance options?",
+        options: {
+            'Back to start': 'mainMenu',
+            'Book an appointment': 'Form'
+        }
+    },
+    businessInsurance: {
+        prompt: "Your business deserves solid protection.",
+        options: {
+            'Back to start': 'mainMenu',
+            'Book an appointment': 'Form'
+        }
+    },
+    lifeInsurance: {
+        prompt: "Life insurance helps you look after the people who matter most.",
+        options: {
+            'Back to start': 'mainMenu',
+            'Book an appointment': 'Form'
+        }
+    },
+    incomeProtectionInsurance: {
+        prompt: "Thinking about income protection?",
+        options: {
+            'Back to start': 'mainMenu',
+            'Book an appointment': 'Form'
+        }
+    },
+    redundancyInsurance: {
+        prompt: "Redundancy cover offers peace of mind.",
+        options: {
+            'Back to start': 'mainMenu',
+            'Book an appointment': 'Form'
+        }
+    }
+};
 
 function addMessage(message, isBot = true) {
     const chatBox = document.getElementById('chatBox');
@@ -10,91 +171,40 @@ function addMessage(message, isBot = true) {
     chatBox.scrollTop = chatBox.scrollHeight;
 }
 
-function startChat(){
+function startChat() {
     document.getElementById('main').style.display = 'block';
-    document.getElementById('mainOptions').style.display = 'block';
+    showState(currentState);
 }
 
-function selectOption(option) {
-    // Hide main options first
-    document.getElementById('mainOptions').style.display = 'none';
-    
-    switch (option) {
-        case 'investment':
-            currentState = 'investment';
-            addMessage(`What kind of help do you need, ${userName}?`, true);
-            document.getElementById('helpOptions').style.display = 'block';
-            break;
+function showState(stateId) {
+    const state = flow[stateId];
+    addMessage(state.prompt, true);
 
-        case 'family':
-            currentState = 'family';
-            addMessage(`What information are you looking for, ${userName}?`, true);
-            document.getElementById('infoOptions').style.display = 'block';
-            break;
+    const optionsDiv = document.getElementById('options');
+    optionsDiv.innerHTML = '';
 
-        case 'property':
-            currentState = 'property';
-            addMessage(`What information are you looking for, ${userName}?`, true);
-            document.getElementById('infoOptions').style.display = 'block';
-            break;
-
-        case 'retirement':
-            currentState = 'retirement';
-            addMessage(`What information are you looking for, ${userName}?`, true);
-            document.getElementById('infoOptions').style.display = 'block';
-            break;
-
-        case 'insurance':
-            currentState = 'insurance';
-            addMessage(`What information are you looking for, ${userName}?`, true);
-            document.getElementById('infoOptions').style.display = 'block';
-            break;
+    for (const [optionText, nextState] of Object.entries(state.options)) {
+        const button = document.createElement('button');
+        button.textContent = optionText;
+        button.onclick = () => selectOption(optionText);
+        optionsDiv.appendChild(button);
     }
 }
 
-function selectSecondaryOption(option) {
-    const responses = {
-        // Help responses
-        'technical': `I'll connect you with our technical support team. What specific technical issue are you experiencing?`,
-        'account': `I can help you with account-related issues. What's happening with your account?`,
-        'general': `I'll be happy to answer your general questions. What would you like to know?`,
-        
-        // Info responses
-        'products': `Here's our product catalog. We offer various solutions including...`,
-        'services': `Our services include consulting, implementation, and support...`,
-        'pricing': `Our pricing plans start from $X per month. Would you like a detailed breakdown?`
-    };
+function selectOption(optionText) {
+    const nextState = flow[currentState].options[optionText];
 
-    addMessage(`I'm interested in ${option}`, false);
-    addMessage(responses[option], true);
+    if (nextState === 'Form') {
+        addMessage(`Please fill out this form: [Link to form]`, true);
+        setTimeout(() => backToMain(), 3000);
+    } else {
+        addMessage(`I chose: ${optionText}`, false);
+        currentState = nextState;
+        showState(currentState);
+    }
 }
 
 function backToMain() {
-    // Hide all secondary option areas
-    document.getElementById('helpOptions').style.display = 'none';
-    document.getElementById('infoOptions').style.display = 'none';
-    
-    // Show main options
-    document.getElementById('mainOptions').style.display = 'block';
-    currentState = 'main';
-    
-    addMessage('What else can I help you with?', true);
-}
-
-function endChat() {
-    // Hide all option areas
-    document.getElementById('mainOptions').style.display = 'none';
-    document.getElementById('helpOptions').style.display = 'none';
-    document.getElementById('infoOptions').style.display = 'none';
-    
-    addMessage(`Thank you for chatting with me, ${userName}! Have a great day!`, true);
-    
-    // Reset button after 2 seconds
-    setTimeout(() => {
-        document.getElementById('userInputArea').style.display = 'block';
-        document.getElementById('userName').value = '';
-        document.getElementById('chatBox').innerHTML = '';
-        userName = '';
-        currentState = 'main';
-    }, 2000);
+    currentState = 'mainMenu';
+    showState(currentState);
 }
