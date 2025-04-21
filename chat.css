@@ -24,6 +24,12 @@
     background-color: white;
 }
 
+.welcome {
+    background-color: #3d455e;
+    margin-right: auto;
+    color: white;
+}
+
 .message {
     margin: 10px 0;
     padding: 8px 12px;
