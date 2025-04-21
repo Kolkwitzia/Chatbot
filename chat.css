@@ -21,7 +21,7 @@
     padding: 10px;
     margin-bottom: 20px;
     border-radius: 4px;
-    background-color: #3D455E;
+    background-color: #3d455e;
 }
 
 .message {
@@ -32,13 +32,13 @@
 }
 
 .bot-message {
-    background-color: #3D455E;
+    background-color: #3d455e;
     margin-right: auto;
     color: white;
 }
 
 .user-message {
-    background-color: #F26522;
+    background-color: #f26522;
     margin-left: auto;
     color: white;
 }
