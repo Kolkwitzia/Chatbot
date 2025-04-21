@@ -10,6 +10,10 @@ function addMessage(message, isBot = true) {
     chatBox.scrollTop = chatBox.scrollHeight;
 }
 
+function startChat(){
+    document.getElementById('main').style.display = 'block';
+}
+
 function selectOption(option) {
     // Hide main options first
     document.getElementById('mainOptions').style.display = 'none';
