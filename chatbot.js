@@ -10,17 +10,6 @@ function addMessage(message, isBot = true) {
     chatBox.scrollTop = chatBox.scrollHeight;
 }
 
-function startChat() {
-    // Hide input area and show main options
-    document.getElementById('userInputArea').style.display = 'none';
-    document.getElementById('mainOptions').style.display = 'block';
-    currentState = 'main';
-
-    // Initial greeting
-    addMessage(`Hello, is there anything I can help you with?`);
-    addMessage('Please select one of the options below:');
-}
-
 function selectOption(option) {
     // Hide main options first
     document.getElementById('mainOptions').style.display = 'none';
