@@ -11,21 +11,13 @@ function addMessage(message, isBot = true) {
 }
 
 function startChat() {
-    const nameInput = document.getElementById('userName');
-    userName = nameInput.value.trim();
-    
-    if (!userName) {
-        alert('Please enter your name to start the chat');
-        return;
-    }
-
     // Hide input area and show main options
     document.getElementById('userInputArea').style.display = 'none';
     document.getElementById('mainOptions').style.display = 'block';
     currentState = 'main';
 
     // Initial greeting
-    addMessage(`Hello ${userName}! I'm ChatBot. How can I help you today?`);
+    addMessage(`Hello, is there anything I can help you with?`);
     addMessage('Please select one of the options below:');
 }
 
