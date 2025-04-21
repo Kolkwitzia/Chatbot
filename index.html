@@ -1,37 +1,24 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rule-Based Chatbot</title>
-    <link rel="stylesheet" href="chat.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rule-Based Chatbot</title>
+  <link rel="stylesheet" href="chat.css">
 </head>
 <body>
-    <div class="chat-container" id="main">
-        <div class="chat-box" id="chatBox">
-            <text class="welcome" onload="startChat('main')">Hello, how can i help you?</text>
-            <!-- Messages will appear here -->
-        </div>
-        <div class="options-area" id="mainOptions" style="display: block;">
-            <button onclick="selectOption('investment')">Investment</button>
-            <button onclick="selectOption('family')">Family</button>
-            <button onclick="selectOption('property')">Property</button>
-            <button onclick="selectOption('retirement')">Retirement</button>
-            <button onclick="selectOption('insurance')">Insurance</button>
-        </div>
-        <div class="options-area" id="helpOptions" style="display: none;">
-            <button onclick="selectSecondaryOption('technical')">Technical Support</button>
-            <button onclick="selectSecondaryOption('account')">Account Issues</button>
-            <button onclick="selectSecondaryOption('general')">General Questions</button>
-            <button onclick="backToMain()">Back to Main Menu</button>
-        </div>
-        <div class="options-area" id="infoOptions" style="display: none;">
-            <button onclick="selectSecondaryOption('products')">Product Information</button>
-            <button onclick="selectSecondaryOption('services')">Services Details</button>
-            <button onclick="selectSecondaryOption('pricing')">Pricing</button>
-            <button onclick="backToMain()">Back to Main Menu</button>
-        </div>
+  <div class="chat-container" id="main">
+    <div class="chat-box" id="chatBox">
+      <!-- Chat messages will appear here -->
     </div>
-    <script src="chatbot.js"></script>
+    <div class="options-area" id="options">
+      <!-- Option buttons will be dynamically injected here -->
+    </div>
+  </div>
+
+  <script src="chatbot.js"></script>
+  <script>
+    window.onload = startChat;
+  </script>
 </body>
 </html>
